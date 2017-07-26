@@ -8,8 +8,7 @@ from models import Model_cdap
 
 from django.conf import settings
 import os
-
-from coreapp.forms import Model_cdap_form1, Model_cdap_form2, Model_cdap_form3
+import subprocess
 
 
 # Create your views here.
@@ -49,8 +48,13 @@ class RegistModelWizard(SessionWizardView):
     def done(self, form_list, **kwargs):
         self.instance.save()
         appname = form_list[0].cleaned_data.get('name')
-        newappdir = os.path.join(settings.BASE_DIR, appname)
-        os.makedirs(newappdir)
+
+        managepath = settings.BASE_DIR+'\\'+'manage.py'
+
+        child = subprocess.Popen(['python', managepath, 'startapp', appname])
+        child.wait()
+
+        settings.INSTALLED_APPS += (appname,)
 
         return render_to_response('coreapp/regist_app_wizard.html', {
                                   'form_data': [form.cleaned_data for form in form_list],
