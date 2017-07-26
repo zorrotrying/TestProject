@@ -15,7 +15,21 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from coreapp import views
+from coreapp.forms import Model_cdap_form1, Model_cdap_form2, Model_cdap_form3
+
+
+from test_formtools.forms import ContactForm1, ContactForm2
+from test_formtools.views import ContactWizard
+
+
+formlist = [Model_cdap_form1, Model_cdap_form2, Model_cdap_form3]
 
 urlpatterns = [
+    url(r'^$', views.home, name='home'),
+    url(r'^newapp/$', views.RegistModelWizard.as_view(formlist,
+                                                      condition_dict={'1': views.some_condition,
+                                                                      '2': views.some_condition2})),
+    url(r'^contact/$', ContactWizard.as_view([ContactForm1,ContactForm2])),
     url(r'^admin/', admin.site.urls),
 ]

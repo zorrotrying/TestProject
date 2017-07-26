@@ -1,0 +1,21 @@
+{% extends 'home.html' %}
+
+
+{% block title %}
+Register model page
+{% endblock %}
+
+{% block content %}
+
+<form method="post">
+      {% csrf_token %}
+    {{ form.as_p }}
+    <button type="reset">Reset</button>
+    <button type="submit">Next</button>
+</form>
+
+
+
+{% endblock %}
+
+
