@@ -9,7 +9,7 @@ from models import Model_cdap
 from django.conf import settings
 import os
 import subprocess
-
+#import importlib
 
 # Create your views here.
 
@@ -41,20 +41,40 @@ class RegistModelWizard(SessionWizardView):
         self.instance = Model_cdap()
         return super(RegistModelWizard, self).dispatch(request, *args, **kwargs)
 
+
+
+    # def get_form_kwargs(self, step=None):
+    #     if step == 0:
+    #         return {'author': self.request.user}
+    #     else:
+    #         return {}
+
+    def get_form_initial(self, step):
+        return self.initial_dict.get('0', {'author': self.request.user})
+
     def get_form_instance(self, step):
         return self.instance
-
 
     def done(self, form_list, **kwargs):
         self.instance.save()
         appname = form_list[0].cleaned_data.get('name')
-
         managepath = settings.BASE_DIR+'\\'+'manage.py'
 
         child = subprocess.Popen(['python', managepath, 'startapp', appname])
         child.wait()
 
-        settings.INSTALLED_APPS += (appname,)
+        add_set_path = settings.SITE_ROOT +'\\'+'add_settings.py'
+
+        with open(add_set_path, 'r') as rawAppFile:
+            rawApp = rawAppFile.readlines()[0]
+        Add_AppList = r"%s,'%s%s" % (rawApp[:-1],appname,rawApp[-2:])
+
+        f = open(add_set_path, 'w')
+        f.write(Add_AppList)
+        f.close()
+
+        #settings.INSTALLED_APPS += appname
+
 
         return render_to_response('coreapp/regist_app_wizard.html', {
                                   'form_data': [form.cleaned_data for form in form_list],

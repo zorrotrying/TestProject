@@ -9,6 +9,12 @@ class Model_cdap_form1(forms.ModelForm):
         model = Model_cdap
         exclude = ('pub_date','slug','modelpath','modelcmd',)
 
+    def __init__(self, *args, **kwargs):
+        from django.forms.widgets import HiddenInput
+        super(Model_cdap_form1, self).__init__(*args, **kwargs)
+        self.fields['author'].widget = HiddenInput()
+
+
 
 class Model_cdap_form2(forms.ModelForm):
 

@@ -1,12 +1,19 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import User
 
 from django.utils.text import slugify
 
 # Create your models here.
 
+def upload_to_path(instance, filename):
+    upload_to = r'script4apps/%s/%s' % (instance.author.username, filename)
+    return upload_to
+
+
 class Model_cdap(models.Model):
+    author = models.ForeignKey(User)
     name = models.CharField(max_length=32,unique=True)
     title = models.CharField(max_length=255, null=True)
 
@@ -19,11 +26,11 @@ class Model_cdap(models.Model):
     )
     type = models.CharField(max_length=32, choices=type_class)
 
-    modelpath = models.FileField(upload_to='coreapp/rawscripts', null=True)
+    modelpath = models.FileField(upload_to=upload_to_path, null=True)
     modelcmd = models.TextField(null=True)
     slug = models.SlugField(unique=True)
     owner = models.CharField(max_length=32)
-    author = models.CharField(max_length=32)
+    #user = models.ForeignKey(User)
     description = models.TextField()
     pub_date = models.DateTimeField('date published', null=True)
 

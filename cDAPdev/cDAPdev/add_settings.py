@@ -1,0 +1,1 @@
+ADD_INSTALLED_APPS = ['test_formtools','RobApp7']
