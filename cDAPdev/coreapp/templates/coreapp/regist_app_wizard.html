@@ -15,16 +15,10 @@ Register model page
     {% csrf_token %}
 
 {{ wizard.management_form }}
-{% if wizard.form.forms %}
-    {{ wizard.form.management_form }}
-    {% for form in wizard.form.forms %}
-{#        {{ form.as_p }}#}
-        {% crispy form %}
-    {% endfor %}
-{% else %}
-{#    {{ wizard.form }}#}
-    {% crispy form %}
-{% endif %}
+
+{% crispy wizard.form %}
+
+
 {% if wizard.steps.prev %}
 <button name="wizard_prev_step" value="{{ wizard.steps.first }}">{% trans "first step" %}</button>
 <button name="wizard_prev_step" value="{{ wizard.steps.prev }}">{% trans "prev step" %}</button>
