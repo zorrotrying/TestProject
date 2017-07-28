@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'formtools',
     'coreapp',
+    'coreapp2',
 ]
 
 INSTALLED_APPS += ADD_INSTALLED_APPS

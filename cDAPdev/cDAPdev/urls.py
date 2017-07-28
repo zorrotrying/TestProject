@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from coreapp import views
 from coreapp.forms import Model_cdap_form1, Model_cdap_form2, Model_cdap_form3
@@ -31,5 +31,6 @@ urlpatterns = [
                                                       condition_dict={'1': views.some_condition,
                                                                       '2': views.some_condition2})),
     url(r'^contact/$', ContactWizard.as_view([ContactForm1,ContactForm2])),
+    url(r'^test', include('coreapp2.urls', namespace='testapp')),
     url(r'^admin/', admin.site.urls),
 ]
