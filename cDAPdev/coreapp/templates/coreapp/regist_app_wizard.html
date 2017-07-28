@@ -18,10 +18,12 @@ Register model page
 {% if wizard.form.forms %}
     {{ wizard.form.management_form }}
     {% for form in wizard.form.forms %}
-        {{ form.as_p }}
+{#        {{ form.as_p }}#}
+        {% crispy form %}
     {% endfor %}
 {% else %}
-    {{ wizard.form }}
+{#    {{ wizard.form }}#}
+    {% crispy form %}
 {% endif %}
 {% if wizard.steps.prev %}
 <button name="wizard_prev_step" value="{{ wizard.steps.first }}">{% trans "first step" %}</button>
