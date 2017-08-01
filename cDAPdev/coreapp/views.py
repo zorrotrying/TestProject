@@ -19,7 +19,7 @@ def home(request):
 
 def some_condition(wizard):
     cleaned_data = wizard.get_cleaned_data_for_step('0') or {}
-    if cleaned_data.get('type') == 'python':
+    if cleaned_data.get('type') in ('python', 'r'):
         return True
     else:
         return False
@@ -27,7 +27,7 @@ def some_condition(wizard):
 
 def some_condition2(wizard):
     cleaned_data = wizard.get_cleaned_data_for_step('0') or {}
-    if cleaned_data.get('type') == 'python':
+    if cleaned_data.get('type') in ('python', 'r'):
         return False
     else:
         return True

@@ -27,3 +27,6 @@ class Model_cdap_form3(forms.ModelForm):
     class Meta:
         model = Model_cdap
         fields = ('modelcmd',)
+
+class Model_cdap_form4(forms.Form):
+
