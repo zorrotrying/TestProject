@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^newapp/$', views.RegistModelWizard.as_view(formlist,
                                                       condition_dict={'1': views.some_condition,
                                                                       '2': views.some_condition2})),
+    url(r'^appconf/(?P<appname>[^/]+)/$', views.configApp, name='app_config'),
     url(r'^contact/$', ContactWizard.as_view([ContactForm1,ContactForm2])),
     url(r'^admin/', admin.site.urls),
 ]

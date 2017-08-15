@@ -28,5 +28,38 @@ class Model_cdap_form3(forms.ModelForm):
         model = Model_cdap
         fields = ('modelcmd',)
 
-class Model_cdap_form4(forms.Form):
+class cdap_form4(forms.Form):
+    #app_name = forms.CharField(max_length=255)
+    Arg_Type_Choices = (
+        ('FileField', 'File'),
+        ('CharField', 'String'),
+        ('FloatField', 'Number'),
+        ('DateField', 'Date'),
+        ('BooleanField', 'Boolean'),
+    )
+    Arg_Type = forms.ChoiceField(
+        choices=Arg_Type_Choices,
+        required=True,
+    )
+
+
+class cdap_form5(forms.Form):
+    def __init__(self, *args, **kwargs):
+        ArgList = kwargs.pop('ArgList')
+        super(cdap_form5, self).__init__(*args, **kwargs)
+
+        Arg_Type_Choices = (
+            ('FileField', 'File'),
+            ('CharField', 'String'),
+            ('FloatField', 'Number'),
+            ('DateField', 'Date'),
+            ('BooleanField', 'Boolean'),
+        )
+
+        for x in xrange(len(ArgList)):
+            self.fields[ArgList[x]] = forms.ChoiceField(
+                label=ArgList[x],
+                choices=Arg_Type_Choices,
+                required=True,
+            )
 

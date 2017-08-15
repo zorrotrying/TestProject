@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+Model Run
+{% endblock title %}
+
+{% block nav-home %}
+ <a class="navbar-brand" href="{% url 'model_detail' modelId %}">Tutorial</a>
+   <strong> <a class="navbar-brand" href="{% url 'model_run' modelId %}">Start</a> </strong>
+{#    <a class="navbar-brand" href="{% url 'home' %}">Result Page</a>#}
+{% endblock nav-home %}
+
+{% block content %}
+
+  <div class="row">
+    <div class="col-md-8">
+<h1>Define your File and Parameters</h1>
+      <hr/>
+      <div class="well">
+        {% crispy form %}
+      </div>
+    </div>
+  </div>-
+
+{% endblock %}

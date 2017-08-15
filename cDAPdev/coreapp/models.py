@@ -8,7 +8,11 @@ from django.utils.text import slugify
 # Create your models here.
 
 def upload_to_path(instance, filename):
-    upload_to = r'script4apps/%s/%s' % (instance.author.username, filename)
+    #upload_to = r'script4apps/%s/%s/%s' % (instance.author.username, instance.name, filename)
+    upload_to = r'script4apps/%s/%s' % (instance.name, filename)
+    #upload_to = r'script4apps/%s/%s' % (instance.author.username, filename)
+
+
     return upload_to
 
 
@@ -32,7 +36,7 @@ class Model_cdap(models.Model):
     owner = models.CharField(max_length=32)
     #user = models.ForeignKey(User)
     description = models.TextField()
-    pub_date = models.DateTimeField('date published', null=True)
+    pub_date = models.DateTimeField('date published', null=True, auto_now=True)
 
     def __str__(self):
         return self.title

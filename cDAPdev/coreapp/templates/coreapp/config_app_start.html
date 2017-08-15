@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Halo CDAP</title>
+</head>
+<body>
+<h1>This is a test for Function Config page</h1>
+
+{#<h2>{{ testTag }}</h2>#}
+{#<h2>{{ testTag2 }}</h2>#}
+{#<h2>{{ testTag3 }}</h2>#}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h3>{{ funname }}</h3>
+    {{ form.as_p }}
+
+    <input type="submit" value="Submit It" />
+
+</form>
+
+
+</body>
+</html>
