@@ -1,1 +1,1 @@
-ADD_INSTALLED_APPS = ['test_formtools','RobApp7','kkk','RobLoveit','RobLoveIt2']
+ADD_INSTALLED_APPS = ['test_formtools','RobApp7','kkk','RobLoveit','RobLoveIt2','RobHowareu','RobApp99']
