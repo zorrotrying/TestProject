@@ -1,0 +1,29 @@
+{% extends 'home.html' %}
+
+
+{% block title %}
+Model Registration Step-1
+{% endblock title %}
+
+{% block content %}
+
+  <div class="row">
+    <div class="col-md-6">
+<h1>Define Basic App Information</h1>
+      <hr/>
+      <div class="well">
+
+          <form action="." method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+              {{ form.as_p }}
+
+{{ wizard.management_form }}
+<input type="submit" value="Submit-2">
+</form>
+
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+

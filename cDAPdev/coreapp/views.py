@@ -1,4 +1,5 @@
-from django.shortcuts import render, render_to_response , HttpResponse, redirect
+from django.shortcuts import render, HttpResponseRedirect , HttpResponse, redirect
+from django.core.urlresolvers import reverse
 
 from formtools.wizard.views import SessionWizardView
 
@@ -36,18 +37,11 @@ def some_condition2(wizard):
 class RegistModelWizard(SessionWizardView):
     #file_storage = FileSystemStorage(location='/coreapp/rawtemp')
     file_storage = FileSystemStorage(location=os.path.join(settings.MEDIA_ROOT, 'tempscript'))
+    template_name = 'coreapp/form_wizard_base.html'
 
     def dispatch(self, request, *args, **kwargs):
         self.instance = Model_cdap()
         return super(RegistModelWizard, self).dispatch(request, *args, **kwargs)
-
-
-
-    # def get_form_kwargs(self, step=None):
-    #     if step == 0:
-    #         return {'author': self.request.user}
-    #     else:
-    #         return {}
 
     def get_form_initial(self, step):
         return self.initial_dict.get('0', {'author': self.request.user})
@@ -73,38 +67,4 @@ class RegistModelWizard(SessionWizardView):
         f.write(Add_AppList)
         f.close()
 
-        #settings.INSTALLED_APPS += appname
-
-
-        return render_to_response('coreapp/regist_app_wizard.html', {
-                                  'form_data': [form.cleaned_data for form in form_list],
-        })
-
-
-
-# def registerModel(request):
-#     if request.method == 'POST':
-#         formdata = Model_cdap_form(request.POST)
-#         if formdata.is_valid():
-#             formdata.save()
-#             return redirect('registscript')
-#     else:
-#         formdata = Model_cdap_form()
-#     return render(request, 'coreapp/regist_app_new.html', {'form':formdata})
-#
-#
-#
-#
-# def registerModel_S2(request):
-#     if request.method == 'POST':
-#         form = Model_cdap_form2(request.POST, request.FILES)
-#         if form.is_valid():
-#             form.save()
-#             return render(request, 'coreapp/regist_app_new_S3.html', {'form':form})
-#     else:
-#         form = Model_cdap_form2()
-#     return render(request, 'coreapp/regist_app_new_S2.html', {'form':form})
-#
-#
-#
-
+        return HttpResponseRedirect(reverse('home'))

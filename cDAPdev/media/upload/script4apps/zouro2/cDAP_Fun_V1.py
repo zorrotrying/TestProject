@@ -10,7 +10,7 @@ import numpy as np
 import re
 
 
-def Fileprocess(filepath, StartLine, SheetName, EmptyLineNum, OutFilepath):
+def Fileprocess(filepath=None, OutFilepath=None, StartLine=35, SheetName='Results', EmptyLineNum=8):
     skiprows = StartLine - 1
     xlsfile = pd.ExcelFile(filepath)
     df = pd.read_excel(xlsfile,sheetname=SheetName,skiprows=skiprows, header=1)
@@ -43,3 +43,9 @@ def Fileprocess(filepath, StartLine, SheetName, EmptyLineNum, OutFilepath):
     
     DFfinal = DFall.reindex_axis(ColList_sort, axis=1)
     DFfinal.to_csv(OutFilepath)
+
+def Function2(name=None):
+    print 'Hello, %s' % name
+
+
+ 

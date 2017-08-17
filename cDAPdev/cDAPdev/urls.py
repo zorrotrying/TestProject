@@ -20,17 +20,17 @@ from coreapp.forms import Model_cdap_form1, Model_cdap_form2, Model_cdap_form3
 
 
 from test_formtools.forms import ContactForm1, ContactForm2
-from test_formtools.views import ContactWizard
-
+from test_formtools.views import ContactWizard, ContactWizard2, FORMS
 
 formlist = [Model_cdap_form1, Model_cdap_form2, Model_cdap_form3]
 
 urlpatterns = [
-    url(r'^$', views.home, name='home'),
+    url(r'^home$', views.home, name='home'),
     url(r'^newapp/$', views.RegistModelWizard.as_view(formlist,
                                                       condition_dict={'1': views.some_condition,
                                                                       '2': views.some_condition2})),
     url(r'^contact/$', ContactWizard.as_view([ContactForm1,ContactForm2])),
     url(r'^test', include('coreapp2.urls', namespace='testapp')),
+    url(r'^difftemplate$', ContactWizard2.as_view(FORMS), name='test_difftemp'),
     url(r'^admin/', admin.site.urls),
 ]
