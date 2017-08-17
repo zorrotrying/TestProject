@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Halo CDAP</title>
-</head>
-<body>
+{% extends "home.html" %}
+
+{% block title %}
+App config after registration
+{% endblock %}
+
+{% block content %}
 <h1>This is a test for Function Config page</h1>
 
 {#<h2>{{ testTag }}</h2>#}
@@ -16,10 +16,8 @@
     <h3>{{ funname }}</h3>
     {{ form.as_p }}
 
-    <input type="submit" value="Submit It" />
+    <input type="submit" value="Submit" />
 
 </form>
 
-
-</body>
-</html>
+{% endblock %}

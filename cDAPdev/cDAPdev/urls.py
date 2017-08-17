@@ -18,10 +18,8 @@ from django.contrib import admin
 from coreapp import views
 from coreapp.forms import Model_cdap_form1, Model_cdap_form2, Model_cdap_form3
 
-
 from test_formtools.forms import ContactForm1, ContactForm2
 from test_formtools.views import ContactWizard
-
 
 formlist = [Model_cdap_form1, Model_cdap_form2, Model_cdap_form3]
 

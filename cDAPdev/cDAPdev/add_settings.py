@@ -1,1 +1,1 @@
-ADD_INSTALLED_APPS = ['test_formtools']
+ADD_INSTALLED_APPS = ['test_formtools','RobApp01']

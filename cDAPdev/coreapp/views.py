@@ -5,7 +5,7 @@ from formtools.wizard.views import SessionWizardView
 from django.core.files.storage import FileSystemStorage
 
 from models import Model_cdap
-from forms import cdap_form4, cdap_form5
+from forms import cdap_form5
 
 from django.conf import settings
 import os
@@ -39,6 +39,7 @@ def some_condition2(wizard):
 class RegistModelWizard(SessionWizardView):
     #file_storage = FileSystemStorage(location='/coreapp/rawtemp')
     file_storage = FileSystemStorage(location=os.path.join(settings.MEDIA_ROOT, 'tempscript'))
+    template_name = 'coreapp/form_wizard_base.html'
 
     def dispatch(self, request, *args, **kwargs):
         self.instance = Model_cdap()
